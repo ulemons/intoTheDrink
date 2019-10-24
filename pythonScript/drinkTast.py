@@ -7,7 +7,7 @@ class generalThread (threading.Thread):
     
     def __init__(self ):
         threading.Thread.__init__(self)
-        self.myInt = plusPin
+        self.myInt = 0
     
     def getRandomValue(self):
         self.myInt = random.randint(0, 5)
@@ -26,6 +26,7 @@ class generalThread (threading.Thread):
 
 if __name__ == '__main__':
     generalSensor1 = generalThread()
+    generalSensor1.start()
     while True:
         time.sleep(1)
-        print "leggo: "+generalSensor1.myInt
+        print "leggo: "+str(generalSensor1.myInt)
