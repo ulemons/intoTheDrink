@@ -1,0 +1,8 @@
+camera|#2a292cff
+temp|21.75
+ph|34.60334
+torb|19.99512
+co2|548.0
+org|22.0
+alchol|0.040201
+level|0.0
