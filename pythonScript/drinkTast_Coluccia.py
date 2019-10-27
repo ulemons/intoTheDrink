@@ -135,9 +135,13 @@ class nodeMcuThread (threading.Thread):
                 
     
 def writeToFile(dictToWrite):
-    f = open('/home/pi/Desktop/SensorsInfo/metrics.txt', "w")
-    for k, v in dictToWrite.items():
-        f.write(str(k) + '|'+ str(v) + '\n')
+    #f = open('/home/pi/Desktop/SensorsInfo/metrics.txt', "w")
+    f = open('/home/pi/intoTheDrink/frontEnd/intoTheDrink/src/assets/metrics.json','w')
+    print("write to file")
+    print(dictToWrite)
+    #for k, v in dictToWrite.items():
+    #    f.write(str(k) + '|'+ str(v) + '\n')
+    f.write(str(dictToWrite).replace("'","\""))
     f.close()
 
 if __name__ == '__main__':
@@ -167,7 +171,8 @@ if __name__ == '__main__':
             print(metrics)
         
             writeToFile(metrics)
-        except Exception: 
+        except Exception:
+            print (Exception)
             print('something went wrong in main but fuck all this is an Hackathon! ')
             traceback.print_exc()
         
