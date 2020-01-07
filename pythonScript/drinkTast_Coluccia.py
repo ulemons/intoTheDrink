@@ -47,9 +47,12 @@ class cameraThread (threading.Thread):
 
         index_max = scipy.argmax(counts)                    # find most frequent
         peak = codes[index_max]
+        
         colour = binascii.hexlify(bytearray(int(c) for c in peak)).decode('ascii')
         #print('most frequent is %s (#%s)' % (peak, colour))
-        self.color = '#'+colour
+        self.color = '#'+colour[2:]
+        
+        #self.color = peak
     
     def run(self):
 
@@ -137,10 +140,6 @@ class nodeMcuThread (threading.Thread):
 def writeToFile(dictToWrite):
     #f = open('/home/pi/Desktop/SensorsInfo/metrics.txt', "w")
     f = open('/home/pi/intoTheDrink/frontEnd/intoTheDrink/src/assets/metrics.json','w')
-    print("write to file")
-    print(dictToWrite)
-    #for k, v in dictToWrite.items():
-    #    f.write(str(k) + '|'+ str(v) + '\n')
     f.write(str(dictToWrite).replace("'","\""))
     f.close()
 
@@ -155,10 +154,10 @@ if __name__ == '__main__':
     nodeMcu.start()
     
     while True:
-        time.sleep(1)
+        time.sleep(10)
         try:
             metrics = {
-                "camera" : cameraSensor.color,
+                "camera" : str(cameraSensor.color),
                 "temp" : str(temperatureSensor.temperature),
                 "ph": str(nodeMcu.ph),
                 "torb": str(nodeMcu.torb),
@@ -171,8 +170,7 @@ if __name__ == '__main__':
             print(metrics)
         
             writeToFile(metrics)
-        except Exception:
-            print (Exception)
+        except Exception: 
             print('something went wrong in main but fuck all this is an Hackathon! ')
             traceback.print_exc()
         
