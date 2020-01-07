@@ -1,9 +1,23 @@
-<div id="contentBarolo">
-  <div class="metric" style="position: absolute;top: 379px;right: 609px;;">Colour: {{colour}}</div>
-  <div class="metric" style="position: absolute;top: 422px;right: 616px;;">Temp: {{temp}}</div>
-  <div class="metric" style="position: absolute;top: 469px;right: 631px;;">Ph: {{ph}}</div>
-  <div class="metric" style="position: absolute;top: 519px;right: 586px;;">Torbidity: {{torbidity}}</div>
-  <div class="metric" style="position: absolute;top: 561px;right: 621px;;">Co2: {{co2}}</div>
+<div id="contentAltro" [hidden]="outputClass == 'EMPTY'">
+  <div class="metric" style="position: absolute;top: 420px;right: 810px;;font-size: 4rem">{{temp}}</div>
 </div>
+
+<div id="contentBarolo" *ngIf="outputClass == 'RED'">
+  <div class="metric" style="position: absolute;top: 375px;right: 555px;;width:140px">Colour: {{colour}}</div>
+  <div class="metric" style="position: absolute;top: 422px;right: 563px;;width:140px">Alchol: {{alchol}}</div>
+  <div class="metric" style="position: absolute;top: 469px;right: 595px;;width:140px">Ph: {{ph}}</div>
+  <div class="metric" style="position: absolute;top: 519px;right: 552px;;width:140px">Torbidity: {{torbidity}}</div>
+  <div class="metric" style="position: absolute;top: 561px;right: 602px;;width:140px">Co2: {{co2}}</div>
+</div>
+
+<div id="contentBianco" *ngIf="outputClass == 'WHITE'">
+  <div class="metric" style="position: absolute;top: 375px;right: 555px;;width:140px">Colour: {{colour}}</div>
+  <div class="metric" style="position: absolute;top: 422px;right: 563px;;width:140px">Alchol: {{alchol}}</div>
+  <div class="metric" style="position: absolute;top: 469px;right: 595px;;width:140px">Ph: {{ph}}</div>
+  <div class="metric" style="position: absolute;top: 519px;right: 552px;;width:140px">Torbidity: {{torbidity}}</div>
+  <div class="metric" style="position: absolute;top: 561px;right: 602px;;width:140px">Co2: {{co2}}</div>
+</div>
+
+<div id="contentEmpty" *ngIf="outputClass == 'EMPTY'"></div>
 
 <router-outlet></router-outlet>
